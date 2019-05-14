@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #F1F1F1;
+}
+
+.login-form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: auto;
+  border-radius: 0px 0px 10px 10px;
+  max-width: 300px;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.login-form .register-link, .login-form .login-link {
+  text-decoration: none;
+}
+
+.sign-register-title {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin: auto;
+  border-radius: 10px 10px 0px 0px;
+  max-width: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #393c3d;
+  color: white;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+}
+
+.form-input .form-control {
+  /* border-radius: 4px; */
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 6px 12px;
+}
+
+.login-button, .register-button {
+  margin-bottom: 10px;
+}
+
+.header-bar-container {
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+  padding: 10px 25px 10px 25px;
+  color: white;
+  background-color: #393c3d;
+}
+
+.header-bar {
+  max-width: 1240px;
+  margin: auto;
+}
+
+.header-bar-container .name {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+}
+
+.header-bar-container .button {
+  display: inline;
+  float: right;
+}
+
+.home {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.home-title {
+  align-content: center;
+}
+
+.login-form label {
+  text-align: left;
+}
+
+.dashboard {
+  max-width: 1240px;
+  margin: auto;
+}
+
+.main-container {
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  max-width: 1240px;
+  min-height: 800px;
+}
+.main-container .nav-bar {
+  max-width: 250px;
+  min-width: 250px;
+  border: 1px solid #393c3d;
+  flex: 1;
+  margin-right: 20px;
+}
+.main-container .nav-menu ul {
+  list-style: none;
+}
+.main-container .dashboard {
+  margin: 0;
+  flex: 4;
+  border: 1px solid #393c3d;
+  min-height: 800px;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import './dashboard.css';
 import NavBar from './nav-bar';
 
 export class Dashboard extends React.Component {
@@ -11,7 +10,7 @@ export class Dashboard extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='main-container'>
                 <NavBar />
                 <div className="dashboard">
                     <div className="dashboard-username">Username: {this.props.username}</div>
