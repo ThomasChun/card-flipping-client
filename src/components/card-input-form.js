@@ -67,12 +67,14 @@ export class CardInputForm extends React.Component {
               type='text'
               name='player-name'
               label='Player:'
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
               type='text'
               name='card-details'
               label='Card Details:'
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
@@ -88,6 +90,7 @@ export class CardInputForm extends React.Component {
                 type='text'
                 name='purchase-price'
                 label='Purchase Price $:'
+                validate={[required, nonEmpty, isTrimmed]}
               />
               <Field
                 component={CardInput}
@@ -220,7 +223,7 @@ export class CardInputForm extends React.Component {
               Submit
             </button>
             <button
-              className='form-clear-button'
+              className={this.props.pristine || this.props.submitting ? 'form-clear-button-disabled' : 'form-clear-button-enabled'}
               type='button'
               disabled={this.props.pristine || this.props.submitting} onClick={this.props.reset}>
               Clear

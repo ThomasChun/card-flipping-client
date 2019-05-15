@@ -194,17 +194,28 @@ body {
   padding: 6px 20px;
   margin: 10px 25px 0px 25px;
   border: 1px solid lightgray;
+  background-color: white;
   border-radius: 5px;
   font-weight: bold;
 }
-.card-input-form .form-button-container .form-submit-button-enabled:hover {
+.card-input-form .form-button-container .form-submit-button-enabled:hover, .card-input-form .form-button-container .form-clear-button-enabled:hover {
   cursor: pointer;
 }
 .card-input-form .form-button-container .form-submit-button-enabled {
   background-color: #00d300;
-  border: 1px solid #00be00;
+  border: 1px solid #008300;
   border-radius: 5px;
   color: white;
+}
+.card-input-form .form-button-container .form-clear-button-enabled {
+  background-color: #ff4242;
+  border: 1px solid #b10000;
+  border-radius: 5px;
+  color: white;
+}
+.card-input-form .card-input-form-warning, .card-input-form .card-input-form-error {
+  display: inline;
+  color: red;
 }
 
 /*# sourceMappingURL=styles.css.map */

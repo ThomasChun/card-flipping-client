@@ -10,22 +10,20 @@ export default class CardInputs extends React.Component {
   render() {
     let error;
     if (this.props.meta.touched && this.props.meta.error) {
-      error = <div className='form-error'>{this.props.label} {this.props.meta.error}</div>
+      error = <div className='card-input-form-error'> * {this.props.meta.error}</div>
     }
 
     let warning;
     if (this.props.meta.touched && this.props.meta.warning) {
       warning = (
-        <div className='form-warning'>{this.props.meta.warning}</div>
+        <div className='card-input-form-warning'>{this.props.meta.warning}</div>
       );
     }
 
     return (
       <div className='card-inputs'>
         <label htmlFor={this.props.input.name}>
-          {this.props.label}
-          {error}
-          {warning}
+          {this.props.label}{error}{warning}
         </label>
         <br/>
         <input
