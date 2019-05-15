@@ -103,6 +103,7 @@ body {
 .main-container {
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   max-width: 1240px;
   min-height: 800px;
@@ -122,6 +123,26 @@ body {
   flex: 4;
   border: 1px solid #393c3d;
   min-height: 800px;
+}
+
+.card-input-form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.card-input-form div {
+  padding: 2.5px 0px;
+}
+.card-input-form label {
+  margin: 0px 15px 0px 0px;
+}
+.card-input-form .card-details {
+  max-width: 400px;
+}
+.card-input-form .card-attributes, .card-input-form .sport-and-year, .card-input-form .player-and-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=styles.css.map */

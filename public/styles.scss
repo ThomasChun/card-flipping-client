@@ -108,6 +108,7 @@ body {
 .main-container {
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   max-width: 1240px;
   min-height: 800px;
@@ -127,5 +128,25 @@ body {
     flex: 4;
     border: 1px solid rgb(57, 60, 61);
     min-height: 800px;
+  }
+}
+
+.card-input-form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  div {
+    padding: 2.5px 0px;
+  }
+  label {
+    margin: 0px 15px 0px 0px;
+  }
+  .card-details {
+    max-width: 400px;
+  }
+  .card-attributes, .sport-and-year, .player-and-details {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
