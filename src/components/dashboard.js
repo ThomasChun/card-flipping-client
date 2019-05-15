@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import NavBar from './nav-bar';
-import dashboard from './dashboard';
+import CardInputForm from './card-input-form';
 
 export class Dashboard extends React.Component {
   render() {
@@ -11,6 +11,7 @@ export class Dashboard extends React.Component {
         <NavBar />
         <div className='dashboard'>
           Dashboard
+          <CardInputForm />
         </div>
       </div>
     )
