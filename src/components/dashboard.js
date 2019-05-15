@@ -8,9 +8,7 @@ export class Dashboard extends React.Component {
   render() {
     return (
       <div className='main-container'>
-        <NavBar />
         <div className='dashboard'>
-          Dashboard
           <CardInputForm />
         </div>
       </div>

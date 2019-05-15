@@ -132,21 +132,87 @@ body {
 }
 
 .card-input-form {
+  font-size: 12px;
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: auto;
+  background: white;
+  max-width: 400px;
+  padding: 40px;
+  border: 1px solid black;
+  border-radius: 15px;
+  h2 {
+    margin: auto;
+    padding-bottom: 20px;
+  }
   div {
-    padding: 2.5px 0px;
+    padding: 2px 0px;
   }
-  label {
-    margin: 0px 15px 0px 0px;
+  .sport-and-year {
+    display: flex;
+    justify-content: center;
+    .year-label {
+      padding-left: 15px;
+    }
   }
-  .card-details {
+  
+  .player-and-details {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: auto;
+    // background: lightseagreen;
+    .player-name, .card-details, .brand {
+      width: 325px;
+    }
+  }
+  .sale-date, .purchase-date, .sale-price, .purchase-price, .listed-on, .purchased-from {
+    width: 150px;
+    clear: both;
+  }
+  .purchase-sold-container {
+    display: flex;
+    // background: pink;
     max-width: 400px;
+    flex-wrap: wrap;
+    margin: auto;
+    .purchase-container, .sold-container {
+      flex: 1;
+      flex-wrap: wrap;
+      padding: 0px 10px;
+    }
   }
-  .card-attributes, .sport-and-year, .player-and-details {
+  .card-attributes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    width: 350px;
+    padding: 10px 0px 10px 30px;
+    // background: lightcyan;
+    margin: auto;
+    .column {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+  }
+  .form-button-container {
+    margin: auto;
+    button {
+      padding: 6px 20px;
+      margin: 10px 25px 0px 25px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .form-submit-button-enabled:hover {
+      cursor: pointer;
+    }
+    .form-submit-button-enabled {
+      background-color: rgb(0, 211, 0);
+      border: 1px solid rgb(0, 190, 0);
+      border-radius: 5px;
+      color: white;
+    }
   }
 }

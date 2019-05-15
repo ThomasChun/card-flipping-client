@@ -126,23 +126,85 @@ body {
 }
 
 .card-input-form {
+  font-size: 12px;
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: auto;
+  background: white;
+  max-width: 400px;
+  padding: 40px;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+.card-input-form h2 {
+  margin: auto;
+  padding-bottom: 20px;
 }
 .card-input-form div {
-  padding: 2.5px 0px;
+  padding: 2px 0px;
 }
-.card-input-form label {
-  margin: 0px 15px 0px 0px;
+.card-input-form .sport-and-year {
+  display: flex;
+  justify-content: center;
 }
-.card-input-form .card-details {
+.card-input-form .sport-and-year .year-label {
+  padding-left: 15px;
+}
+.card-input-form .player-and-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+}
+.card-input-form .player-and-details .player-name, .card-input-form .player-and-details .card-details, .card-input-form .player-and-details .brand {
+  width: 325px;
+}
+.card-input-form .sale-date, .card-input-form .purchase-date, .card-input-form .sale-price, .card-input-form .purchase-price, .card-input-form .listed-on, .card-input-form .purchased-from {
+  width: 150px;
+  clear: both;
+}
+.card-input-form .purchase-sold-container {
+  display: flex;
   max-width: 400px;
+  flex-wrap: wrap;
+  margin: auto;
 }
-.card-input-form .card-attributes, .card-input-form .sport-and-year, .card-input-form .player-and-details {
+.card-input-form .purchase-sold-container .purchase-container, .card-input-form .purchase-sold-container .sold-container {
+  flex: 1;
+  flex-wrap: wrap;
+  padding: 0px 10px;
+}
+.card-input-form .card-attributes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  width: 350px;
+  padding: 10px 0px 10px 30px;
+  margin: auto;
+}
+.card-input-form .card-attributes .column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-input-form .form-button-container {
+  margin: auto;
+}
+.card-input-form .form-button-container button {
+  padding: 6px 20px;
+  margin: 10px 25px 0px 25px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.card-input-form .form-button-container .form-submit-button-enabled:hover {
+  cursor: pointer;
+}
+.card-input-form .form-button-container .form-submit-button-enabled {
+  background-color: #00d300;
+  border: 1px solid #00be00;
+  border-radius: 5px;
+  color: white;
 }
 
 /*# sourceMappingURL=styles.css.map */

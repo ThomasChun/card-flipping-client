@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import CardInput from './card-inputs';
+import { required, nonEmpty, isTrimmed } from '../validators';
 
 export class CardInputForm extends React.Component {
   constructor(props) {
@@ -40,11 +42,10 @@ export class CardInputForm extends React.Component {
 
     return (
       <div>
-        <h2>Input Card Details</h2>
         <form className='card-input-form' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+          <h2>Input Card Details</h2>
           <div className='sport-and-year'>
-            <div>
-            <label> Sport: </label>
+            <label htmlFor='sport' className='sport-label'></label>
             <Field
               component='select' name='sport' onChange={(e) => this.handleSportChange(e.target.value)}>
               <option value=''>- Select Sport -</option>
@@ -53,180 +54,167 @@ export class CardInputForm extends React.Component {
               <option value='Football'>Football</option>
               <option value='Hockey'>Hockey</option>
             </Field>
-            </div>
-            <div>
-            <label htmlFor='year'>Year: </label>
+            <label htmlFor='year' className='year-label'></label>
             <Field
               component='select' name='year'>
               <option value=''>- Select Year -</option>
               {yearsOptions}
             </Field>
-            </div>
           </div>
-
           <div className='player-and-details'>
-            <div>
-            <label htmlFor='player-name'>Player: </label>
             <Field
-              component='input'
+              component={CardInput}
               type='text'
               name='player-name'
-              placeholder=' Mike Trout'
+              label='Player:'
             />
-            </div>
-            <div>
-            <label htmlFor='card-details'>Card: </label>
             <Field
-              className='card-details'
-              component='input'
+              component={CardInput}
               type='text'
               name='card-details'
-              placeholder=' 2019 Topps #1'
+              label='Card Details:'
             />
-            </div>
-            <div>
-            <label htmlFor='purchased-from'>Purchased From: </label>
             <Field
-              className='purchased-from'
-              component='input'
+              component={CardInput}
               type='text'
-              name='purchased-from'
-              placeholder=' COMC'
-            />
-            </div>
-            <div>
-            <label htmlFor='card-details'>Sold On: </label>
-            <Field
-              className='sold-on'
-              component='input'
-              type='text'
-              name='sold-on'
-              placeholder=' eBay'
-            />
-            </div>
-            <div>
-            <label htmlFor='manufacturer'>Manufacturer: </label>
-            <Field
-              className='manufacturer'
-              component='input'
-              type='text'
-              name='manufacturer'
-              placeholder=' Topps, Bowman, etc.'
-            />
-            </div>
-          </div>
-
-          <div>
-            <label htmlFor='purchase-price'>Purchase Price: $</label>
-            <Field
-              component='input'
-              type='text'
-              name='purchase-price'
-              placeholder=''
-            />
-            <label htmlFor='purchase-date'>Purchase Date:</label>
-            <Field
-              component='input'
-              type='date'
-              name='purchase-date'
+              name='brand'
+              label='Brand:'
             />
           </div>
-
-          <div>
-            <label htmlFor='player-name'>Sale Price: $</label>
-            <Field
-              component='input'
-              type='text'
-              name='sale-price'
-              placeholder=''
-            />
-            <label htmlFor='sale-date'>Sale Date:</label>
-            <Field
-              component='input'
-              type='date'
-              name='sale-date'
-            />
+          <div className='purchase-sold-container'>
+            <div className='purchase-container'>
+              <Field
+                component={CardInput}
+                type='text'
+                name='purchase-price'
+                label='Purchase Price $:'
+              />
+              <Field
+                component={CardInput}
+                type='date'
+                name='purchase-date'
+                label='Purchase Date:'
+              />
+              <Field
+                component={CardInput}
+                type='text'
+                name='purchased-from'
+                label='Purchased From:'
+              />
+            </div>
+            <div className='sold-container'>
+              <Field
+                component={CardInput}
+                type='text'
+                name='sale-price'
+                label='Sale Price $:'
+              />
+              <Field
+                component={CardInput}
+                type='date'
+                name='sale-date'
+                label='Date Sold:'
+              />
+              <Field
+                component={CardInput}
+                type='text'
+                name='listed-on'
+                label='Listed On:'
+              />
+            </div>
           </div>
-
           <div className='card-attributes'>
-            <div>
-            
-            <Field
-              component='input'
-              name='rookie'
-              id='rookie'
-              type='checkbox'
-            />
-            <label> Rookie </label>
+            <div className='column'>
+              <div>
+                <Field
+                  component='input'
+                  name='rookie'
+                  id='rookie'
+                  type='checkbox'
+                />
+                <label> Rookie </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='refractor'
+                  id='refractor'
+                  type='checkbox'
+                />
+                <label> Refractor </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='insert'
+                  id='insert'
+                  type='checkbox'
+                />
+                <label> Insert </label>
+              </div>
             </div>
-            <div>
-            <Field
-              component='input'
-              name='refractor'
-              id='refractor'
-              type='checkbox'
-            />
-            <label> Refractor </label>
+            <div className='column'>
+              <div>
+                <Field
+                  component='input'
+                  name='serial-numbered'
+                  id='serial-numbered'
+                  type='checkbox'
+                />
+                <label> Serial #'ed </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='autograph'
+                  id='autograph'
+                  type='checkbox'
+                />
+                <label> Autograph </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='memorabilia'
+                  id='memorabilia'
+                  type='checkbox'
+                />
+                <label> Memorabilia </label>
+              </div>
             </div>
-            <div>
-            <Field
-              component='input'
-              name='short-print'
-              id='short-print'
-              type='checkbox'
-            />
-            <label> Short Print </label>
-            </div>
-            <div>
-            <Field
-              component='input'
-              name='insert'
-              id='insert'
-              type='checkbox'
-            />
-            <label> Insert </label>
-            </div>
-            <div>
-            <Field
-              component='input'
-              name='serial-numbered'
-              id='serial-numbered'
-              type='checkbox'
-            />
-            <label> Serial Numbered </label>
-            </div>
-            <div>
-            <Field
-              component='input'
-              name='autograph'
-              id='autograph'
-              type='checkbox'
-            />
-            <label> Autograph </label>
-            </div>
-            <div>
-            <Field
-              component='input'
-              name='memorabilia'
-              id='memorabilia'
-              type='checkbox'
-            />
-            <label> Memorabilia </label>
-            </div>
-            <div>
-            <Field
-              component='input'
-              name='graded'
-              id='graded'
-              type='checkbox'
-            />
-            <label> Graded </label>
+            <div className='column'>
+              <div>
+                <Field
+                  component='input'
+                  name='graded'
+                  id='graded'
+                  type='checkbox'
+                />
+                <label> Graded </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='short-print'
+                  id='short-print'
+                  type='checkbox'
+                />
+                <label> Short Print </label>
+              </div>
+              <div>
+                <Field
+                  component='input'
+                  name='error'
+                  id='error'
+                  type='checkbox'
+                />
+                <label> Error </label>
+              </div>
             </div>
           </div>
-
-          <div>
+          <div className='form-button-container'>
             <button
-              className='form-submit-button'
+              className={this.props.pristine || this.props.submitting ? 'form-submit-button-disabled' : 'form-submit-button-enabled'}
               type='submit'
               disabled={this.props.pristine || this.props.submitting}>
               Submit
