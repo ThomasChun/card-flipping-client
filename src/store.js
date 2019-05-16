@@ -5,11 +5,13 @@ import {loadAuthToken} from './local-storage';
 import authReducer from './reducers/auth';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import cardsReducer from './reducers/cards';
 
 const store = createStore(
     combineReducers({
         form: formReducer,
         auth: authReducer,
+        cards: cardsReducer,
     }),
     composeWithDevTools(applyMiddleware(thunk))
 );

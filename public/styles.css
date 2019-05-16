@@ -130,9 +130,9 @@ body {
   display: flex;
   flex-direction: column;
   margin: auto;
-  background: white;
+  background-color: #f1f1f1;
   max-width: 400px;
-  padding: 40px;
+  padding: 20px;
   border: 1px solid black;
   border-radius: 15px;
 }
@@ -173,13 +173,16 @@ body {
   flex: 1;
   flex-wrap: wrap;
   padding: 0px 10px;
+  margin-bottom: 10px;
 }
 .card-input-form .card-attributes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 350px;
-  padding: 10px 0px 10px 30px;
+  width: 302px;
+  padding: 5px 0px 5px 26px;
+  background: white;
+  border-radius: 3px;
   margin: auto;
 }
 .card-input-form .card-attributes .column {
@@ -198,24 +201,118 @@ body {
   border-radius: 5px;
   font-weight: bold;
 }
-.card-input-form .form-button-container .form-submit-button-enabled:hover, .card-input-form .form-button-container .form-clear-button-enabled:hover {
+.card-input-form .form-button-container .form-submit-button-enabled:hover {
   cursor: pointer;
+  background-color: #689c00;
+}
+.card-input-form .form-button-container .form-clear-button-enabled:hover {
+  cursor: pointer;
+  background-color: #d80400;
 }
 .card-input-form .form-button-container .form-submit-button-enabled {
-  background-color: #00d300;
-  border: 1px solid #008300;
+  background-color: #87bf17;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   color: white;
 }
 .card-input-form .form-button-container .form-clear-button-enabled {
-  background-color: #ff4242;
-  border: 1px solid #b10000;
+  background-color: #f73936;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   color: white;
 }
 .card-input-form .card-input-form-warning, .card-input-form .card-input-form-error {
   display: inline;
   color: red;
+}
+
+.card-display-container {
+  font-size: 13px;
+}
+.card-display-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.card-display-container thead {
+  background-color: #585858;
+  color: white;
+}
+.card-display-container .thead-player {
+  width: 125px;
+}
+.card-display-container .thead-description {
+  width: 375px;
+}
+.card-display-container .thead-attributes {
+  width: 115px;
+}
+.card-display-container .thead-cost {
+  width: 70px;
+  text-align: end;
+}
+.card-display-container .thead-sale-price {
+  width: 70px;
+  text-align: end;
+}
+.card-display-container .thead-profit {
+  width: 70px;
+  text-align: end;
+}
+.card-display-container .thead-spacer {
+  width: 10px;
+}
+.card-display-container .thead-options {
+  width: 120px;
+  text-align: center;
+}
+.card-display-container .card-display-odd {
+  background-color: #e5e5e5;
+}
+.card-display-container .card-attribute-icons button:disabled {
+  color: white;
+  border-radius: 15px;
+  border: 0px;
+  font-size: 11px;
+  margin: 0px 1px;
+}
+.card-display-container .card-attribute-icons .rc {
+  background-color: #005681;
+}
+.card-display-container .card-attribute-icons .ref {
+  background-color: #ffa646;
+}
+.card-display-container .card-attribute-icons .ins {
+  background-color: #ff4867;
+}
+.card-display-container .card-attribute-icons .ser {
+  background-color: #32a1d4;
+}
+.card-display-container .card-attribute-icons .au {
+  background-color: #f16030;
+}
+.card-display-container .card-attribute-icons .mem {
+  background-color: #04a8b4;
+}
+.card-display-container .card-attribute-icons .gr {
+  background-color: #65b713;
+}
+.card-display-container .card-attribute-icons .sp {
+  background-color: #db18db;
+}
+.card-display-container .card-attribute-icons .err {
+  background-color: #ff4343;
+}
+.card-display-container .data-purchase-price, .card-display-container .data-sale-price, .card-display-container .data-profit {
+  text-align: end;
+}
+.card-display-container .details-options div {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.card-display-container .data-options button {
+  font-size: 11px;
+  margin: 0px 2px;
 }
 
 /*# sourceMappingURL=styles.css.map */

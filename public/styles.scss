@@ -136,9 +136,9 @@ body {
   display: flex;
   flex-direction: column;
   margin: auto;
-  background: white;
+  background-color: rgb(241, 241, 241);
   max-width: 400px;
-  padding: 40px;
+  padding: 20px;
   border: 1px solid black;
   border-radius: 15px;
   h2 {
@@ -180,15 +180,17 @@ body {
       flex: 1;
       flex-wrap: wrap;
       padding: 0px 10px;
+      margin-bottom: 10px;
     }
   }
   .card-attributes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 350px;
-    padding: 10px 0px 10px 30px;
-    // background: lightcyan;
+    width: 302px;
+    padding: 5px 0px 5px 26px;
+    background: rgb(255, 255, 255);
+    border-radius: 3px;
     margin: auto;
     .column {
       display: flex;
@@ -206,18 +208,24 @@ body {
       border-radius: 5px;
       font-weight: bold;
     }
-    .form-submit-button-enabled:hover, .form-clear-button-enabled:hover {
+    .form-submit-button-enabled:hover {
       cursor: pointer;
+      background-color: #689c00;
+    }
+    
+    .form-clear-button-enabled:hover {
+      cursor: pointer;
+      background-color: #d80400;
     }
     .form-submit-button-enabled {
-      background-color: rgb(0, 211, 0);
-      border: 1px solid rgb(0, 131, 0);
+      background-color: #87bf17;
+      border: 1px solid rgba(0,0,0,.15);
       border-radius: 5px;
       color: white;
     }
     .form-clear-button-enabled {
-      background-color: rgb(255, 66, 66);
-      border: 1px solid rgb(177, 0, 0);
+      background-color: #f73936;
+      border: 1px solid rgba(0,0,0,.15);
       border-radius: 5px;
       color: white;
     }
@@ -226,5 +234,97 @@ body {
     display: inline;
     color: red;
     // font-weight: bold;
+  }
+}
+
+// start of card data table display
+.card-display-container {
+  font-size: 13px;
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  thead {
+    background-color: rgb(88, 88, 88);
+    color: white;
+  }
+  .thead-player {
+    width: 125px;
+  }
+  .thead-description {
+    width: 375px;
+  }
+  .thead-attributes {
+    width: 115px;
+  }
+  .thead-cost {
+    width: 70px;
+    text-align: end;
+  }
+  .thead-sale-price {
+    width: 70px;
+    text-align: end;
+  }
+  .thead-profit {
+    width: 70px;
+    text-align: end;
+  }
+  .thead-spacer {
+    width: 10px;
+  }
+  .thead-options {
+    width: 120px;
+    text-align: center;
+  }
+  .card-display-odd {
+    background-color: rgb(229, 229, 229);
+  }
+  .card-attribute-icons {
+    button:disabled {
+      color: white;
+      border-radius: 15px;
+      border: 0px;
+      font-size: 11px;
+      margin: 0px 1px;
+    }
+    .rc {
+      background-color: #005681;
+    }
+    .ref {
+      background-color: rgb(255, 166, 70);
+    }
+    .ins {
+      background-color: rgb(255, 72, 103);
+    }
+    .ser {
+      background-color: #32a1d4;
+    }
+    .au {
+      background-color: #f16030;
+    }
+    .mem {
+      background-color: #04a8b4;
+    }
+    .gr {
+      background-color: rgb(101, 183, 19);
+    }
+    .sp {
+      background-color: rgb(219, 24, 219);
+    }
+    .err {
+      background-color: rgb(255, 67, 67);
+    }
+  }
+  .data-purchase-price, .data-sale-price, .data-profit {
+    text-align: end;
+  }
+  .details-options div{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .data-options button {
+    font-size: 11px;
+    margin: 0px 2px;
   }
 }
