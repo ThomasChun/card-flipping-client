@@ -56,6 +56,18 @@ export class CardsDisplay extends React.Component {
             <tbody>
               {displayCards}
             </tbody>
+            <tfoot>
+              <tr>
+                <td className='tfoot-player'>Player</td>
+                <td className='tfoot-description'>Card Description</td>
+                <td className='tfoot-attributes'>Card Attributes</td>
+                <td className='tfoot-cost'>Cost</td>
+                <td className='tfoot-sale-price'>Sale Price</td>
+                <td className='tfoot-profit'>Profit / Loss</td>
+                <td className='tfoot-spacer'></td>
+                <td className='tfoot-options'>Options</td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>

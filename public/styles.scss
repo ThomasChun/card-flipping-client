@@ -244,40 +244,45 @@ body {
     border-collapse: collapse;
     width: 100%;
   }
-  thead {
+  thead, tfoot {
     background-color: rgb(88, 88, 88);
     color: white;
   }
-  .thead-player {
+  .thead-player, .tfoot-player {
     width: 125px;
+    padding: 0px 10px;
   }
-  .thead-description {
+  .thead-description, .tfoot-description {
     width: 375px;
   }
-  .thead-attributes {
+  .thead-attributes, .tfoot-attributes {
     width: 115px;
   }
-  .thead-cost {
+  .thead-cost, .tfoot-cost {
     width: 70px;
     text-align: end;
   }
-  .thead-sale-price {
+  .thead-sale-price, .tfoot-sale-price {
     width: 70px;
     text-align: end;
   }
-  .thead-profit {
+  .thead-profit, .tfoot-profit {
     width: 70px;
     text-align: end;
   }
-  .thead-spacer {
+  .thead-spacer, .tfoot-spacer {
     width: 10px;
   }
-  .thead-options {
+  .thead-options, .tfoot-options {
     width: 120px;
     text-align: center;
   }
   .card-display-odd {
     background-color: rgb(229, 229, 229);
+    height: 35px;
+  }
+  .card-display-even {
+    height: 35px;
   }
   .card-attribute-icons {
     button:disabled {
@@ -326,5 +331,8 @@ body {
   .data-options button {
     font-size: 11px;
     margin: 0px 2px;
+  }
+  .data-playerName {
+    padding: 0px 10px;
   }
 }
