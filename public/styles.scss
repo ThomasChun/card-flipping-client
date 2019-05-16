@@ -162,11 +162,11 @@ body {
     flex-wrap: wrap;
     margin: auto;
     // background: lightseagreen;
-    .player-name, .card-details, .brand {
+    .playerName, .cardDetails, .brand {
       width: 325px;
     }
   }
-  .sale-date, .purchase-date, .sale-price, .purchase-price, .listed-on, .purchased-from {
+  .saleDate, .purchaseDate, .salePrice, .purchasePrice, .listedOn, .purchasedFrom {
     width: 150px;
     clear: both;
   }

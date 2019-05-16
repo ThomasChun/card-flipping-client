@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CardInput from './card-inputs';
 import { required, nonEmpty, isTrimmed } from '../validators';
+import { createCard } from '../actions/cards';
 
 export class CardInputForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export class CardInputForm extends React.Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    this.props.dispatch(createCard(this.props.user, values))
   }
 
   handleSportChange(value) {
@@ -65,14 +66,14 @@ export class CardInputForm extends React.Component {
             <Field
               component={CardInput}
               type='text'
-              name='player-name'
+              name='playerName'
               label='Player:'
               validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
               type='text'
-              name='card-details'
+              name='cardDetails'
               label='Card Details:'
               validate={[required, nonEmpty, isTrimmed]}
             />
@@ -88,20 +89,20 @@ export class CardInputForm extends React.Component {
               <Field
                 component={CardInput}
                 type='text'
-                name='purchase-price'
+                name='purchasePrice'
                 label='Purchase Price $:'
                 validate={[required, nonEmpty, isTrimmed]}
               />
               <Field
                 component={CardInput}
                 type='date'
-                name='purchase-date'
+                name='purchaseDate'
                 label='Purchase Date:'
               />
               <Field
                 component={CardInput}
                 type='text'
-                name='purchased-from'
+                name='purchasedFrom'
                 label='Purchased From:'
               />
             </div>
@@ -109,19 +110,19 @@ export class CardInputForm extends React.Component {
               <Field
                 component={CardInput}
                 type='text'
-                name='sale-price'
+                name='salePrice'
                 label='Sale Price $:'
               />
               <Field
                 component={CardInput}
                 type='date'
-                name='sale-date'
+                name='saleDate'
                 label='Date Sold:'
               />
               <Field
                 component={CardInput}
                 type='text'
-                name='listed-on'
+                name='listedOn'
                 label='Listed On:'
               />
             </div>
@@ -160,7 +161,7 @@ export class CardInputForm extends React.Component {
               <div>
                 <Field
                   component='input'
-                  name='serial-numbered'
+                  name='serialNumbered'
                   id='serial-numbered'
                   type='checkbox'
                 />
@@ -198,7 +199,7 @@ export class CardInputForm extends React.Component {
               <div>
                 <Field
                   component='input'
-                  name='short-print'
+                  name='shortPrint'
                   id='short-print'
                   type='checkbox'
                 />

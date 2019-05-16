@@ -156,10 +156,10 @@ body {
   flex-wrap: wrap;
   margin: auto;
 }
-.card-input-form .player-and-details .player-name, .card-input-form .player-and-details .card-details, .card-input-form .player-and-details .brand {
+.card-input-form .player-and-details .playerName, .card-input-form .player-and-details .cardDetails, .card-input-form .player-and-details .brand {
   width: 325px;
 }
-.card-input-form .sale-date, .card-input-form .purchase-date, .card-input-form .sale-price, .card-input-form .purchase-price, .card-input-form .listed-on, .card-input-form .purchased-from {
+.card-input-form .saleDate, .card-input-form .purchaseDate, .card-input-form .salePrice, .card-input-form .purchasePrice, .card-input-form .listedOn, .card-input-form .purchasedFrom {
   width: 150px;
   clear: both;
 }

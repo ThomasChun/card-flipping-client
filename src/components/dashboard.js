@@ -9,7 +9,7 @@ export class Dashboard extends React.Component {
     return (
       <div className='main-container'>
         <div className='dashboard'>
-          <CardInputForm />
+          <CardInputForm user={this.props.username}/>
         </div>
       </div>
     )
