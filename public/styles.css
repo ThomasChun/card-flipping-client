@@ -135,15 +135,15 @@ body {
   color: white;
   font-weight: bold;
   font-size: 16px;
-  background-color: #00c000;
-  border: 1px solid green;
+  background-color: #20df20;
+  border: 1px solid #06d306;
   border-radius: 3px;
   padding: 3px 20px;
   cursor: pointer;
 }
 
 .add-card-button:hover {
-  background-color: #079c07;
+  background-color: #0ab90a;
 }
 
 .card-input-form {
@@ -409,6 +409,30 @@ body {
 
 .display-none {
   display: none;
+}
+
+.data-display-container {
+  background-color: #daf6ff;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  text-align: center;
+}
+.data-display-container h2 {
+  margin-top: 10px;
+}
+.data-display-container .data-categories-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.data-display-container .data-block-1, .data-display-container .data-block-2, .data-display-container .data-block-3 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  background-color: #ceffc6;
+  min-height: 100px;
+  margin: 25px;
 }
 
 /*# sourceMappingURL=styles.css.map */

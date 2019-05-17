@@ -17,7 +17,7 @@ export default class CardDetailModal extends React.Component {
             <div><b>Year: </b>{card.year}</div>
             <div><b>Brand: </b>{card.brand}</div>
             <div><b>Listed On:</b>{card.listedOn}</div>
-            <div><b>purchase Date: </b>{card.purchaseDate}</div>
+            <div><b>Purchase Date: </b>{card.purchaseDate}</div>
             <div><b>Purchase Price: </b>${card.purchasePrice}</div>
             <div><b>Purchase From: </b>{card.purchasedFrom}</div>
             <div><b>Date Sold: </b>{card.saleDate}</div>

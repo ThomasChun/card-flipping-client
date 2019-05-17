@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import CardsDisplay from './cards-display';
 import AddCard from './add-card';
+import DataDisplay from './data-display';
 
 export class Dashboard extends React.Component {
   render() {
     return (
       <div className='main-container'>
         <div className='dashboard'>
+          <DataDisplay />
           <AddCard />
           <CardsDisplay />
         </div>
