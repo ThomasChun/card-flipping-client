@@ -5,10 +5,15 @@ import {
   FETCH_CARDS_REQUEST,
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_ERROR,
+  CURRENT_CARD_DETAILS,
+  SHOW_MODAL,
+  HIDE_MODAL,
 } from '../actions/cards';
 
 const initialState = {
   userCards: [],
+  currentCard: null,
+  showModal: false,
   loading: false,
   error: null,
 }
@@ -47,6 +52,24 @@ export default function reducer(state = initialState, action) {
       ...state,
       loading: false,
       error: action.error,
+    }
+  } else if (action.type === CURRENT_CARD_DETAILS) {
+    return {
+      ...state,
+      loading: false,
+      currentCard: action.currentCard,
+    }
+  } else if (action.type === SHOW_MODAL) {
+    return {
+      ...state,
+      loading: false, 
+      showModal: true,
+    }
+  } else if (action.type === HIDE_MODAL) {
+    return {
+      ...state,
+      loading: false, 
+      showModal: false,
     }
   }
   return state;

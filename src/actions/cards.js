@@ -91,3 +91,41 @@ export const createCard = (user, card) => (dispatch, getState) => {
     .then(data => dispatch(createCardSuccess(data)))
     .then(err => dispatch(createCardError(err)))
 }
+
+export const DELETE_CARD_SUCCESS = 'DELETE_CARD_SUCCESS';
+export const deleteCardSuccess = () => ({
+  type: DELETE_CARD_SUCCESS,
+})
+
+export const deleteCard = (cardId) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/cards/${cardId}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    },
+    body: JSON.stringify({
+      cardId,
+    })
+  })
+  .then(() => dispatch(deleteCardSuccess()))
+  .then(() => dispatch(fetchCards()))
+}
+
+export const CURRENT_CARD_DETAILS = 'CURRENT_CARD_DETAILS';
+export const currentCardDetails = (currentCard) => ({
+  type: CURRENT_CARD_DETAILS,
+  currentCard,
+})
+
+export const SHOW_MODAL = 'SHOW_MODAL';
+export const showModal = () => ({
+  type: SHOW_MODAL,
+})
+
+export const HIDE_MODAL = 'HIDE_MODAL';
+export const hideModal = () => ({
+  type: HIDE_MODAL,
+})

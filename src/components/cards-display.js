@@ -1,15 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCards } from '../actions/cards';
+import { fetchCards, currentCardDetails, hideModal, showModal } from '../actions/cards';
+import CardDetailModal from './card-detail-modal';
 
 export class CardsDisplay extends React.Component {
   componentDidMount() {
     this.props.dispatch(fetchCards());
   }
 
+  handleCardDetails(cardId) {
+    let card = this.props.cards.filter(card => card.id === cardId);
+    console.log(card);
+    this.props.dispatch(currentCardDetails(card));
+    this.showModal();
+  }
+
+  handleCardEdit(cardId) {
+    console.log(cardId)
+  }
+
+  handleCardDelete(cardId) {
+    console.log(cardId)
+  }
+
+  showModal() {
+    console.log('show modal')
+    this.props.dispatch(showModal());
+  }
+
+  hideModal() {
+    this.props.dispatch(hideModal());
+  }
+
   render() {
-    console.log(this.props.cards)
     let cards = this.props.cards;
     let usersCards = cards.filter(card => card.user === this.props.username);
     let displayCards = usersCards.map((card, index) => {
@@ -32,13 +56,20 @@ export class CardsDisplay extends React.Component {
           <td className='data-sale-price'>${card.salePrice}</td>
           <td className='data-profit'>$0</td>
           <td className='data-spacer'></td>
-          <td className='data-options'><div><button className='details-button'>Details</button><button>Edit</button><button>Delete</button></div></td>
+          <td className='data-options'>
+            <div>
+              <button id={card.id} className='details-button' onClick={(e) => this.handleCardDetails(e.target.id)}>Details</button>
+              <button id={card.id} className='edit-button' onClick={(e) => this.handleCardEdit(e.target.id)}>Edit</button>
+              <button id={card.id} className='delete-button' onClick={(e) => this.handleCardDelete(e.target.id)}>Delete</button>
+            </div>
+          </td>
         </tr>
       )
     })
 
     return (
       <div className='card-display-container'>
+        <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard}/>
         <div className='card-display'>
           <table>
             <thead>
@@ -81,6 +112,8 @@ const mapStateToProps = state => {
     username: state.auth.currentUser.username,
     name: `${currentUser.firstName} ${currentUser.lastName}`,
     cards: state.cards.userCards,
+    showModal: state.cards.showModal,
+    currentCard: state.cards.currentCard,
   };
 };
 
