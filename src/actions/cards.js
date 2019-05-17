@@ -129,3 +129,13 @@ export const HIDE_MODAL = 'HIDE_MODAL';
 export const hideModal = () => ({
   type: HIDE_MODAL,
 })
+
+export const SHOW_ADD_CARD_MODAL = 'SHOW_ADD_CARD_MODAL';
+export const showAddCardModal = () => ({
+  type: SHOW_ADD_CARD_MODAL,
+})
+
+export const HIDE_ADD_CARD_MODAL = 'HIDE_ADD_CARD_MODAL';
+export const hideAddCardModal = () => ({
+  type: HIDE_ADD_CARD_MODAL,
+})

@@ -14,6 +14,8 @@ export class CardInputForm extends React.Component {
 
   onSubmit(values) {
     this.props.dispatch(createCard(this.props.user, values))
+    .then(this.props.reset)
+    .then(this.props.handleClose)
   }
 
   handleSportChange(value) {
@@ -23,6 +25,7 @@ export class CardInputForm extends React.Component {
   }
 
   render() {
+    const showHideClassname = this.props.show ? 'card-input-form-modal display-block' : 'card-input-form-modal display-none';
     let sport = this.state.sport;
     let currentYear = 2019;
     let years = [];
@@ -42,8 +45,9 @@ export class CardInputForm extends React.Component {
     let yearsOptions = years.map((year, index) => (<option key={index} value={year}>{year}</option>));
 
     return (
-      <div>
-        <form className='card-input-form' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <div className={showHideClassname}>
+        <form className='card-input-form card-input-form-modal-main' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+        <button className='card-input-form-close-button' type='button' onClick={this.props.handleClose}>X</button>
           <h2>Input Card Details</h2>
           <div className='sport-and-year'>
             <label htmlFor='sport' className='sport-label'></label>

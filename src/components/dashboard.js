@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-// import NavBar from './nav-bar';
-import CardInputForm from './card-input-form';
 import CardsDisplay from './cards-display';
+import AddCard from './add-card';
 
 export class Dashboard extends React.Component {
   render() {
     return (
       <div className='main-container'>
         <div className='dashboard'>
+          <AddCard />
           <CardsDisplay />
-          <CardInputForm user={this.props.username}/>
         </div>
       </div>
     )
