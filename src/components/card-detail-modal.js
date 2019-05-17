@@ -4,7 +4,6 @@ export default class CardDetailModal extends React.Component {
   render() {
     const showHideClassname = this.props.show ? 'modal display-block' : 'modal display-none';
     let { card } = this.props;
-    console.log(card);
 
     if (card === null) {
       return '';

@@ -11,7 +11,6 @@ export class CardsDisplay extends React.Component {
 
   handleCardDetails(cardId) {
     let card = this.props.cards.filter(card => card.id === cardId);
-    console.log(card);
     this.props.dispatch(currentCardDetails(card));
     this.showModal();
   }
@@ -25,7 +24,6 @@ export class CardsDisplay extends React.Component {
   }
 
   showModal() {
-    console.log('show modal')
     this.props.dispatch(showModal());
   }
 
