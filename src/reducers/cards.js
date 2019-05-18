@@ -10,6 +10,8 @@ import {
   HIDE_MODAL,
   SHOW_ADD_CARD_MODAL,
   HIDE_ADD_CARD_MODAL,
+  SHOW_DELETE_CARD_MODAL,
+  HIDE_DELETE_CARD_MODAL,
 } from '../actions/cards';
 
 const initialState = {
@@ -17,6 +19,7 @@ const initialState = {
   currentCard: null,
   showModal: false,
   showAddCardModal: false,
+  showDeleteCardModal: false,
   loading: false,
   error: null,
 }
@@ -85,6 +88,18 @@ export default function reducer(state = initialState, action) {
       ...state,
       loading: false,
       showAddCardModal: false,
+    }
+  } else if (action.type === SHOW_DELETE_CARD_MODAL) {
+    return {
+      ...state,
+      loading: false,
+      showDeleteCardModal: true,
+    }
+  } else if (action.type === HIDE_DELETE_CARD_MODAL) {
+    return {
+      ...state,
+      loading: false,
+      showDeleteCardModal: false,
     }
   }
   return state;

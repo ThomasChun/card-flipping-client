@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCards, currentCardDetails, hideModal, showModal } from '../actions/cards';
+import { fetchCards, currentCardDetails, hideModal, showModal, showDeleteCardModal, hideDeleteCardModal } from '../actions/cards';
 import CardDetailModal from './card-detail-modal';
+import DeleteCardModal from './delete-card-modal';
 
 export class CardsDisplay extends React.Component {
   componentDidMount() {
@@ -20,7 +21,13 @@ export class CardsDisplay extends React.Component {
   }
 
   handleCardDelete(cardId) {
-    console.log(cardId)
+    let card = this.props.cards.filter(card => card.id === cardId);
+    this.props.dispatch(currentCardDetails(card));
+    this.props.dispatch(showDeleteCardModal());
+  }
+
+  handleDeleteHideModal() {
+    this.props.dispatch(hideDeleteCardModal());
   }
 
   showModal() {
@@ -67,7 +74,8 @@ export class CardsDisplay extends React.Component {
 
     return (
       <div className='card-display-container'>
-        <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard}/>
+        <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard} />
+        <DeleteCardModal show={this.props.showDeleteCardModal} handleClose={() => this.handleDeleteHideModal()} card={this.props.currentCard} />
         <div className='card-display'>
           <table>
             <thead>
@@ -111,6 +119,7 @@ const mapStateToProps = state => {
     name: `${currentUser.firstName} ${currentUser.lastName}`,
     cards: state.cards.userCards,
     showModal: state.cards.showModal,
+    showDeleteCardModal: state.cards.showDeleteCardModal,
     currentCard: state.cards.currentCard,
   };
 };

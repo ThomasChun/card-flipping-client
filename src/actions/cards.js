@@ -139,3 +139,13 @@ export const HIDE_ADD_CARD_MODAL = 'HIDE_ADD_CARD_MODAL';
 export const hideAddCardModal = () => ({
   type: HIDE_ADD_CARD_MODAL,
 })
+
+export const SHOW_DELETE_CARD_MODAL = 'SHOW_DELETE_CARD_MODAL';
+export const showDeleteCardModal = () => ({
+  type: SHOW_DELETE_CARD_MODAL,
+})
+
+export const HIDE_DELETE_CARD_MODAL = 'HIDE_DELETE_CARD_MODAL';
+export const hideDeleteCardModal = () => ({
+  type: HIDE_DELETE_CARD_MODAL,
+})
