@@ -11,6 +11,7 @@ export class DeleteCardModal extends React.Component {
 
   handleDeleteCard(cardId) {
     this.props.dispatch(deleteCard(cardId));
+    this.props.dispatch(hideDeleteCardModal());
   }
 
   render() {
