@@ -26,7 +26,9 @@ export class DeleteCardModal extends React.Component {
         <div className={showHideClassname}>
           <section className='modal-main card-attribute-icons'>
             <div>Delete this card?</div>
-            <div>{card.playerName} - {card.cardDetails}</div>
+            <div><b>{card.playerName} - {card.cardDetails}</b></div>
+            <div>${card.purchasePrice}</div>
+            <div>{card.purchaseDate}</div>
             <button onClick={() => this.handleDeleteCard(card.id)}>Delete</button>
             <button onClick={this.props.handleClose}>Cancel</button>
           </section>
