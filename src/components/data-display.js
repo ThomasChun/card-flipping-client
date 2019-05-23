@@ -10,7 +10,7 @@ export class DataDisplay extends React.Component {
     let invested = cards.length > 0 ? cards.reduce((a, obj) => a + parseFloat(obj.purchasePrice), 0).toFixed(2) : '0';
     let cardsSold = cards.filter(card => parseInt(card.salePrice) > 0);
     let totalSales = cardsSold.length > 0 ? cardsSold.reduce((a, obj) => a + parseFloat(obj.salePrice), 0).toFixed(2) : '0';
-    let netProfitLoss = totalSales - invested;
+    let netProfitLoss = (totalSales - invested).toFixed(2);
     let percentCardsSold = `${parseFloat(cardsSold.length / cards.length * 100).toFixed(2)}%`;
 
     // Counts total amount of cards by playerName
