@@ -53,10 +53,10 @@ export const createCardError = (error) => ({
 
 export const createCard = (user, card) => (dispatch, getState) => {
   dispatch(createCardRequest());
-  const { autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
+  const { id, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/cards`, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -64,6 +64,7 @@ export const createCard = (user, card) => (dispatch, getState) => {
     },
     body: JSON.stringify({
       user,
+      id,
       autograph,
       brand,
       cardDetails,
@@ -90,6 +91,7 @@ export const createCard = (user, card) => (dispatch, getState) => {
     .then(res => res.json())
     .then(data => dispatch(createCardSuccess(data)))
     .then(err => dispatch(createCardError(err)))
+    .then(() => dispatch(fetchCards()))
 }
 
 export const DELETE_CARD_SUCCESS = 'DELETE_CARD_SUCCESS';
@@ -120,6 +122,11 @@ export const currentCardDetails = (currentCard) => ({
   currentCard,
 })
 
+export const CLEAR_CURRENT_CARD_DETAILS = 'CLEAR_CURRENT_CARD_DETAILS';
+export const clearCurrentCardDetails = () => ({
+  type: CLEAR_CURRENT_CARD_DETAILS,
+})
+
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const showModal = () => ({
   type: SHOW_MODAL,
@@ -148,4 +155,14 @@ export const showDeleteCardModal = () => ({
 export const HIDE_DELETE_CARD_MODAL = 'HIDE_DELETE_CARD_MODAL';
 export const hideDeleteCardModal = () => ({
   type: HIDE_DELETE_CARD_MODAL,
+})
+
+export const SHOW_EDIT_CARD_MODAL = 'SHOW_EDIT_CARD_MODAL';
+export const showEditCardModal = () => ({
+  type: SHOW_EDIT_CARD_MODAL,
+})
+
+export const HIDE_EDIT_CARD_MODAL = 'HIDE_EDIT_CARD_MODAL';
+export const hideEditCardModal = () => ({
+  type: HIDE_EDIT_CARD_MODAL,
 })

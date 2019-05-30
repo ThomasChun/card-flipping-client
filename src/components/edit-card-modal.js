@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import {hideDeleteCardModal, deleteCard} from '../actions/cards';
+import CardEditInputForm from './card-edit-input-form';
+import { hideEditCardModal, clearCurrentCardDetails } from '../actions/cards';
 
-export class DeleteCardModal extends React.Component {
-
-  handleHideDeleteCard() {
-    this.props.dispatch(hideDeleteCardModal());
-  }
-
-  handleDeleteCard(cardId) {
-    this.props.dispatch(deleteCard(cardId));
-    this.props.dispatch(hideDeleteCardModal());
+export class EditCardModal extends React.Component {
+  hideModal() {
+    this.props.dispatch(hideEditCardModal());
+    this.props.dispatch(clearCurrentCardDetails());
   }
 
   render() {
@@ -24,12 +20,7 @@ export class DeleteCardModal extends React.Component {
       return (
         <div className={showHideClassname}>
           <section className='modal-main card-attribute-icons'>
-            <div>Delete this card?</div>
-            <div><b>{card.playerName} - {card.cardDetails}</b></div>
-            <div>${card.purchasePrice}</div>
-            <div>{card.purchaseDate}</div>
-            <button onClick={() => this.handleDeleteCard(card.id)}>Delete</button>
-            <button onClick={this.props.handleClose}>Cancel</button>
+            <CardEditInputForm show={true} handleClose={()=> this.hideModal()} user={this.props.username} card={this.props.currentCard}/>
           </section>
         </div>
       );
@@ -44,9 +35,9 @@ const mapStateToProps = state => {
     name: `${currentUser.firstName} ${currentUser.lastName}`,
     cards: state.cards.userCards,
     showModal: state.cards.showModal,
-    showDeleteCardModal: state.cards.showDeleteCardModal,
+    showEditCardModal: state.cards.showEditCardModal,
     currentCard: state.cards.currentCard,
   };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(DeleteCardModal));
+export default requiresLogin()(connect(mapStateToProps)(EditCardModal));

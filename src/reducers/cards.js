@@ -6,12 +6,15 @@ import {
   FETCH_CARDS_SUCCESS,
   FETCH_CARDS_ERROR,
   CURRENT_CARD_DETAILS,
+  CLEAR_CURRENT_CARD_DETAILS,
   SHOW_MODAL,
   HIDE_MODAL,
   SHOW_ADD_CARD_MODAL,
   HIDE_ADD_CARD_MODAL,
   SHOW_DELETE_CARD_MODAL,
   HIDE_DELETE_CARD_MODAL,
+  SHOW_EDIT_CARD_MODAL,
+  HIDE_EDIT_CARD_MODAL,
 } from '../actions/cards';
 
 const initialState = {
@@ -20,6 +23,7 @@ const initialState = {
   showModal: false,
   showAddCardModal: false,
   showDeleteCardModal: false,
+  showEditCardModal: false,
   loading: false,
   error: null,
 }
@@ -65,6 +69,12 @@ export default function reducer(state = initialState, action) {
       loading: false,
       currentCard: action.currentCard,
     }
+  } else if (action.type === CLEAR_CURRENT_CARD_DETAILS) {
+    return {
+      ...state,
+      loading: false,
+      currentCard: null,
+    }
   } else if (action.type === SHOW_MODAL) {
     return {
       ...state,
@@ -100,6 +110,18 @@ export default function reducer(state = initialState, action) {
       ...state,
       loading: false,
       showDeleteCardModal: false,
+    }
+  } else if (action.type === SHOW_EDIT_CARD_MODAL) {
+    return {
+      ...state,
+      loading: false,
+      showEditCardModal: true,
+    }
+  } else if (action.type === HIDE_EDIT_CARD_MODAL) {
+    return {
+      ...state,
+      loading: false,
+      showEditCardModal: false,
     }
   }
   return state;

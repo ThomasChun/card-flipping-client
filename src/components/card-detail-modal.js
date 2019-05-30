@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default class CardDetailModal extends React.Component {
+
   render() {
     const showHideClassname = this.props.show ? 'modal display-block' : 'modal display-none';
     let { card } = this.props;
@@ -35,7 +36,7 @@ export default class CardDetailModal extends React.Component {
               {card.shortPrint ? <button className='sp' disabled>SP</button> : ''}
               {card.error ? <button className='err' disabled>ERR</button> : ''}
             </div>
-            <button onClick={this.props.handleClose}>close</button>
+            <button onClick={this.props.handleClose}>Close</button>
           </section>
         </div>
       );

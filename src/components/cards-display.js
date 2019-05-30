@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCards, currentCardDetails, hideModal, showModal, showDeleteCardModal, hideDeleteCardModal } from '../actions/cards';
+import { fetchCards, currentCardDetails, hideModal, showModal, showDeleteCardModal, hideDeleteCardModal, showEditCardModal, hideEditCardModal } from '../actions/cards';
 import CardDetailModal from './card-detail-modal';
 import DeleteCardModal from './delete-card-modal';
+import EditCardModal from './edit-card-modal';
 
 export class CardsDisplay extends React.Component {
   componentDidMount() {
@@ -13,11 +14,17 @@ export class CardsDisplay extends React.Component {
   handleCardDetails(cardId) {
     let card = this.props.cards.filter(card => card.id === cardId);
     this.props.dispatch(currentCardDetails(card));
-    this.showModal();
+    this.props.dispatch(showModal());
   }
 
   handleCardEdit(cardId) {
-    console.log(cardId)
+    let card = this.props.cards.filter(card => card.id === cardId);
+    this.props.dispatch(currentCardDetails(card));
+    this.props.dispatch(showEditCardModal());
+  }
+
+  handleEditHideModal() {
+    this.props.dispatch(hideEditCardModal());
   }
 
   handleCardDelete(cardId) {
@@ -28,10 +35,6 @@ export class CardsDisplay extends React.Component {
 
   handleDeleteHideModal() {
     this.props.dispatch(hideDeleteCardModal());
-  }
-
-  showModal() {
-    this.props.dispatch(showModal());
   }
 
   hideModal() {
@@ -74,6 +77,7 @@ export class CardsDisplay extends React.Component {
 
     return (
       <div className='card-display-container'>
+        <EditCardModal show={this.props.showEditCardModal} handleClose={() => this.handleEditHideModal()} card={this.props.currentCard} />
         <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard} />
         <DeleteCardModal show={this.props.showDeleteCardModal} handleClose={() => this.handleDeleteHideModal()} card={this.props.currentCard} />
         <div className='card-display'>
@@ -120,6 +124,7 @@ const mapStateToProps = state => {
     cards: state.cards.userCards,
     showModal: state.cards.showModal,
     showDeleteCardModal: state.cards.showDeleteCardModal,
+    showEditCardModal: state.cards.showEditCardModal,
     currentCard: state.cards.currentCard,
   };
 };
