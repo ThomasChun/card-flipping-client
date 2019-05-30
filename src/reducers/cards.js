@@ -15,6 +15,7 @@ import {
   HIDE_DELETE_CARD_MODAL,
   SHOW_EDIT_CARD_MODAL,
   HIDE_EDIT_CARD_MODAL,
+  // SORT_CARDS_BY_PLAYERNAME,
 } from '../actions/cards';
 
 const initialState = {
@@ -123,6 +124,13 @@ export default function reducer(state = initialState, action) {
       loading: false,
       showEditCardModal: false,
     }
-  }
+  } 
+  // else if (action.type === SORT_CARDS_BY_PLAYERNAME) {
+  //   return {
+  //     ...state,
+  //     loading: false,
+  //     userCards: action.usersCards.sort((a,b) => a.playerName > b.playerName), 
+  //   }
+  // }
   return state;
 }

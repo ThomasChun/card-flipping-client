@@ -26,9 +26,6 @@ export class CardEditInputForm extends React.Component {
   }
 
   render() {
-
-    console.log(this.props.card[0])
-
     const showHideClassname = this.props.show ? 'card-input-form-modal display-block' : 'card-input-form-modal display-none';
     let sport = this.state.sport;
     let currentYear = 2019;

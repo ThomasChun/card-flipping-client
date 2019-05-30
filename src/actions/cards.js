@@ -166,3 +166,9 @@ export const HIDE_EDIT_CARD_MODAL = 'HIDE_EDIT_CARD_MODAL';
 export const hideEditCardModal = () => ({
   type: HIDE_EDIT_CARD_MODAL,
 })
+
+// export const SORT_CARDS_BY_PLAYERNAME = 'SORT_CARDS_BY_PLAYERNAME';
+// export const sortCardsByPlayerName = (usersCards) => ({
+//   type: SORT_CARDS_BY_PLAYERNAME,
+//   usersCards,
+// })

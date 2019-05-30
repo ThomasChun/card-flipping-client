@@ -41,9 +41,16 @@ export class CardsDisplay extends React.Component {
     this.props.dispatch(hideModal());
   }
 
+  handleSortByPlayer() {
+    console.log('Player header clicked')
+    // figure out how to sort table.
+  }
+
   render() {
     let cards = this.props.cards;
     let usersCards = cards.filter(card => card.user === this.props.username);
+    // let sortedCards = cards.sort((a,b) => a.playerName > b.playerName);
+    // console.log(sortedCards)
     let displayCards = usersCards.map((card, index) => {
       return (
         <tr key={index} className={index % 2 === 0 ? 'card-display-even' : 'card-display-odd'}>
@@ -81,10 +88,19 @@ export class CardsDisplay extends React.Component {
         <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard} />
         <DeleteCardModal show={this.props.showDeleteCardModal} handleClose={() => this.handleDeleteHideModal()} card={this.props.currentCard} />
         <div className='card-display'>
-          <table>
+          <div className='card-display-filter-container'>
+            <select>
+              <option value=''>- Select Sport -</option>
+              <option value='Baseball'>Baseball</option>
+              <option value='Basketball'>Basketball</option>
+              <option value='Football'>Football</option>
+              <option value='Hockey'>Hockey</option>
+            </select>
+          </div>
+          <table id='display-card-table'>
             <thead>
               <tr>
-                <td className='thead-player'>Player</td>
+                <td className='thead-player' onClick={() => this.handleSortByPlayer()}>Player</td>
                 <td className='thead-description'>Card Description</td>
                 <td className='thead-attributes'>Card Attributes</td>
                 <td className='thead-cost'>Cost</td>
