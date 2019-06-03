@@ -15,7 +15,7 @@ import {
   HIDE_DELETE_CARD_MODAL,
   SHOW_EDIT_CARD_MODAL,
   HIDE_EDIT_CARD_MODAL,
-  // SORT_CARDS_BY_PLAYERNAME,
+  SORT_CARDS_BY_PLAYERNAME,
 } from '../actions/cards';
 
 const initialState = {
@@ -124,13 +124,22 @@ export default function reducer(state = initialState, action) {
       loading: false,
       showEditCardModal: false,
     }
-  } 
-  // else if (action.type === SORT_CARDS_BY_PLAYERNAME) {
-  //   return {
-  //     ...state,
-  //     loading: false,
-  //     userCards: action.usersCards.sort((a,b) => a.playerName > b.playerName), 
-  //   }
-  // }
+  } else if (action.type === SORT_CARDS_BY_PLAYERNAME) {
+    return {
+      ...state,
+      loading: false,
+      userCards: state.userCards.sort(function(a,b){
+        let nameA = a.playerName.toLowerCase();
+        let nameB = b.playerName.toLowerCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      }) // filter(card => card.playerName === 'C.J. McCollum'), 
+    }
+  }
   return state;
 }
