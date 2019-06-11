@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CardInput from './card-inputs';
-import { required, nonEmpty, isTrimmed } from '../validators';
+// import { required, nonEmpty, isTrimmed } from '../validators';
 import { createCard } from '../actions/cards';
 import { connect } from 'react-redux'
 
@@ -73,14 +73,14 @@ export class CardEditInputForm extends React.Component {
               type='text'
               name='playerName'
               label='Player:'
-              validate={[required, nonEmpty, isTrimmed]}
+              // validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
               type='text'
               name='cardDetails'
               label='Card Details:'
-              validate={[required, nonEmpty, isTrimmed]}
+              // validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
@@ -96,7 +96,7 @@ export class CardEditInputForm extends React.Component {
                 type='text'
                 name='purchasePrice'
                 label='Purchase Price $:'
-                validate={[required, nonEmpty, isTrimmed]}
+                // validate={[required, nonEmpty, isTrimmed]}
               />
               <Field
                 component={CardInput}

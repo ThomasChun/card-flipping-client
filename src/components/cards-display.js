@@ -7,6 +7,7 @@ import DeleteCardModal from './delete-card-modal';
 import EditCardModal from './edit-card-modal';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import { Link } from 'react-router-dom';
 
 export class CardsDisplay extends React.Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ export class CardsDisplay extends React.Component {
   handleCardDetails(cardId) {
     let card = this.props.cards.filter(card => card.id === cardId);
     this.props.dispatch(currentCardDetails(card));
-    this.props.dispatch(showModal());
+    // this.props.dispatch(showModal());
   }
 
   handleCardEdit(cardId) {
@@ -107,9 +108,10 @@ export class CardsDisplay extends React.Component {
         Cell: props => {
           return (
             <div>
-              <button className='details-button' onClick={() => this.handleCardDetails(props.original.id)}>Details</button>
+              {/* <button className='details-button' onClick={() => this.handleCardDetails(props.original.id)}>Details</button>
               <button onClick={() => this.handleCardEdit(props.original.id)}>Edit</button>
-              <button onClick={() => this.handleCardDelete(props.original.id)}>Delete</button>
+              <button onClick={() => this.handleCardDelete(props.original.id)}>Delete</button> */}
+              <Link onClick={() => this.handleCardDetails(props.original.id)} to={{ pathname: `/card-details/${props.original.id}`, state: { id: props.original.id}}}>Edit</Link>
             </div>
           )
         },
@@ -158,11 +160,14 @@ export class CardsDisplay extends React.Component {
     //   )
     // })
 
+
+    //<EditCardModal show={this.props.showEditCardModal} handleClose={() => this.handleEditHideModal()} card={this.props.currentCard} />
+    // <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard} />
+    // <DeleteCardModal show={this.props.showDeleteCardModal} handleClose={() => this.handleDeleteHideModal()} card={this.props.currentCard} />
+
     return (
       <div className='card-display-container'>
-        <EditCardModal show={this.props.showEditCardModal} handleClose={() => this.handleEditHideModal()} card={this.props.currentCard} />
-        <CardDetailModal show={this.props.showModal} handleClose={() => this.hideModal()} card={this.props.currentCard} />
-        <DeleteCardModal show={this.props.showDeleteCardModal} handleClose={() => this.handleDeleteHideModal()} card={this.props.currentCard} />
+        
         <ReactTable
           columns={columns}
           data={cardData}

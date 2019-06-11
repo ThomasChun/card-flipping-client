@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import CardEditInputForm from './card-edit-input-form';
-import { hideEditCardModal, clearCurrentCardDetails } from '../actions/cards';
+import { hideEditCardModal } from '../actions/cards';
 
 export class EditCardModal extends React.Component {
   hideModal() {
     this.props.dispatch(hideEditCardModal());
-    this.props.dispatch(clearCurrentCardDetails());
+    // this.props.dispatch(clearCurrentCardDetails());
   }
 
   render() {
