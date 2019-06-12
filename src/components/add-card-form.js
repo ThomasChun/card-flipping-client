@@ -1,11 +1,11 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CardInput from './card-inputs';
-// import { required, nonEmpty, isTrimmed } from '../validators';
-import { editCard } from '../actions/cards';
-import { connect } from 'react-redux'
+import { required, nonEmpty, isTrimmed } from '../validators';
+import { createCard } from '../actions/cards';
+import { withRouter } from 'react-router';
 
-export class CardEditInputForm extends React.Component {
+export class AddCardForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,10 +14,8 @@ export class CardEditInputForm extends React.Component {
   }
 
   onSubmit(values) {
-    console.log(values);
-    this.props.dispatch(editCard(this.props.user, values))
-    .then(this.props.reset)
-    .then(this.props.handleClose)
+    this.props.dispatch(createCard(this.props.user, values))
+    this.props.history.push('/dashboard');
   }
 
   handleSportChange(value) {
@@ -27,7 +25,7 @@ export class CardEditInputForm extends React.Component {
   }
 
   render() {
-    const showHideClassname = this.props.show ? 'card-input-form-modal display-block' : 'card-input-form-modal display-none';
+    // const showHideClassname = this.props.show ? 'card-input-form-modal display-block' : 'card-input-form-modal display-none';
     let sport = this.state.sport;
     let currentYear = 2019;
     let years = [];
@@ -47,7 +45,7 @@ export class CardEditInputForm extends React.Component {
     let yearsOptions = years.map((year, index) => (<option key={index} value={year}>{year}</option>));
 
     return (
-      <div className={showHideClassname}>
+      <div>
         <form className='card-input-form card-input-form-modal-main' onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <button className='card-input-form-close-button' type='button' onClick={this.props.handleClose}>X</button>
           <h2>Input Card Details</h2>
@@ -74,14 +72,14 @@ export class CardEditInputForm extends React.Component {
               type='text'
               name='playerName'
               label='Player:'
-              // validate={[required, nonEmpty, isTrimmed]}
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
               type='text'
               name='cardDetails'
               label='Card Details:'
-              // validate={[required, nonEmpty, isTrimmed]}
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
@@ -97,7 +95,7 @@ export class CardEditInputForm extends React.Component {
                 type='text'
                 name='purchasePrice'
                 label='Purchase Price $:'
-                // validate={[required, nonEmpty, isTrimmed]}
+                validate={[required, nonEmpty, isTrimmed]}
               />
               <Field
                 component={CardInput}
@@ -242,21 +240,6 @@ export class CardEditInputForm extends React.Component {
   }
 }
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
-CardEditInputForm = reduxForm({
-  form: 'CardEditInputForm'  // a unique identifier for this form
-})(CardEditInputForm)
-
-// You have to connect() to any reducers that you wish to connect to yourself
-CardEditInputForm = connect(
-  state => ({
-    initialValues: state.cards.currentCard[0], // pull initial values from account reducer
-  }),
-  // { load: loadAccount }               // bind account loading action creator
-)(CardEditInputForm)
-
-export default CardEditInputForm
-
-// export default reduxForm({
-//   form: 'CardEditInputForm',
-// })(CardEditInputForm);
+export default withRouter(reduxForm({
+  form: 'addCardForm',
+})(AddCardForm));

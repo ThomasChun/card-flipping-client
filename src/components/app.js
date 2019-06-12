@@ -7,6 +7,7 @@ import LandingPage from './landing-page';
 import Dashboard from './dashboard';
 import RegistrationPage from './registration-page';
 import CardDetails from './card-details';
+import AddCardPage from './add-card-page';
 
 
 export class App extends React.Component {
@@ -46,7 +47,8 @@ export class App extends React.Component {
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/register" component={RegistrationPage} />
-                <Route exact path='/card-details/:id' component={CardDetails} />
+                <Route exact path="/add-card" component={AddCardPage} />
+                <Route exact path="/card-details" component={CardDetails} />
             </div>
         );
     }

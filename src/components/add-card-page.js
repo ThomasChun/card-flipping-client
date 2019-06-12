@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import CardsDisplay from './cards-display';
-import DataDisplay from './data-display';
+// import CardInputForm from './card-input-form';
+import AddCardForm from './add-card-form';
+import { showAddCardModal, hideAddCardModal } from '../actions/cards';
 import { Link } from 'react-router-dom';
 
-export class Dashboard extends React.Component {
+export class AddCardPage extends React.Component {
+  handleAddCard() {
+    this.props.dispatch(showAddCardModal());
+  }
+
+  hideModal() {
+    this.props.dispatch(hideAddCardModal());
+  }
+
   render() {
     return (
       <div className='main-container'>
         <div className='dashboard'>
-          <Link to='/add-card'>+ Add Card</Link>
-          <DataDisplay />
-          <CardsDisplay />
+          <Link to='/dashboard'>Back to Dashboard</Link>
+          <AddCardForm user={this.props.username} />
         </div>
       </div>
     )
@@ -28,4 +36,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default requiresLogin()(connect(mapStateToProps)(Dashboard));
+export default requiresLogin()(connect(mapStateToProps)(AddCardPage));

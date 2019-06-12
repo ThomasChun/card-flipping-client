@@ -56,7 +56,7 @@ export const createCard = (user, card) => (dispatch, getState) => {
   const { id, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/cards`, {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -91,6 +91,67 @@ export const createCard = (user, card) => (dispatch, getState) => {
     .then(res => res.json())
     .then(data => dispatch(createCardSuccess(data)))
     .then(err => dispatch(createCardError(err)))
+    .then(() => dispatch(fetchCards()))
+}
+
+export const EDIT_CARD_REQUEST = 'EDIT_CARD_REQUEST';
+export const editCardRequest = () => ({
+  type: EDIT_CARD_REQUEST,
+});
+
+export const EDIT_CARD_SUCCESS = 'EDIT_CARD_SUCCESS';
+export const editCardSuccess = (card) => ({
+  type: EDIT_CARD_SUCCESS,
+  card,
+});
+
+export const EDIT_CARD_ERROR = 'EDIT_CARD_ERROR';
+export const editCardError = (error) => ({
+  type: EDIT_CARD_ERROR,
+  error,
+});
+
+export const editCard = (user, card) => (dispatch, getState) => {
+  dispatch(editCardRequest());
+  const { cardId, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
+  console.log(cardId);
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/cards`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    },
+    body: JSON.stringify({
+      user,
+      id: cardId,
+      autograph,
+      brand,
+      cardDetails,
+      error,
+      graded,
+      insert,
+      listedOn,
+      memorabilia,
+      playerName,
+      purchaseDate,
+      purchasePrice,
+      purchasedFrom,
+      refractor,
+      rookie,
+      saleDate,
+      salePrice,
+      serialNumbered,
+      shortPrint,
+      sport,
+      year,
+    })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(editCardSuccess(data)))
+    .then(err => dispatch(editCardError(err)))
     .then(() => dispatch(fetchCards()))
 }
 
@@ -172,3 +233,97 @@ export const sortCardsByPlayerName = (usersCards) => ({
   type: SORT_CARDS_BY_PLAYERNAME,
   usersCards,
 })
+
+export const SET_CURRENT_CARD_REQUEST = 'SET_CURRENT_CARD_REQUEST';
+export const setCurrentCardRequest = () => ({
+  type: SET_CURRENT_CARD_REQUEST,
+});
+
+export const SET_CURRENT_CARD_SUCCESS = 'SET_CURRENT_CARD_SUCCESS';
+export const setCurrentCardSuccess = (currentCard) => ({
+  type: SET_CURRENT_CARD_SUCCESS,
+  currentCard,
+});
+
+export const SET_CURRENT_CARD_ERROR = 'SET_CURRENT_CARD_ERROR';
+export const setCurrentCardError = (error) => ({
+  type: SET_CURRENT_CARD_ERROR,
+  error,
+});
+
+export const setCurrentCard = (user, card) => (dispatch, getState) => {
+  dispatch(setCurrentCardRequest());
+  const { id, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
+  console.log(id);
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/current-card`, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken}`
+    },
+    body: JSON.stringify({
+      user,
+      cardId: id,
+      autograph,
+      brand,
+      cardDetails,
+      error,
+      graded,
+      insert,
+      listedOn,
+      memorabilia,
+      playerName,
+      purchaseDate,
+      purchasePrice,
+      purchasedFrom,
+      refractor,
+      rookie,
+      saleDate,
+      salePrice,
+      serialNumbered,
+      shortPrint,
+      sport,
+      year,
+    })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(setCurrentCardSuccess(data)))
+    .then(err => dispatch(setCurrentCardError(err)))
+    .then(() => dispatch(fetchCurrentCards()))
+}
+
+export const FETCH_CURRENT_CARDS_REQUEST = 'FETCH_CURRENT_CARDS_REQUEST';
+export const fetchCurrentCardsRequest = () => ({
+  type: FETCH_CURRENT_CARDS_REQUEST,
+});
+
+export const FETCH_CURRENT_CARDS_SUCCESS = 'FETCH_CURRENT_CARDS_SUCCESS';
+export const fetchCurrentCardsSuccess = (currentCards) => ({
+  type: FETCH_CURRENT_CARDS_SUCCESS,
+  currentCards,
+});
+
+export const FETCH_CURRENT_CARDS_ERROR = 'FETCH_CURRENT_CARDS_ERROR';
+export const fetchCurrentCardsError = (error) => ({
+  type: FETCH_CURRENT_CARDS_ERROR,
+  error,
+});
+
+export const fetchCurrentCards = () => (dispatch, getState) => {
+  dispatch(fetchCurrentCardsRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/current-card`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(res => dispatch(fetchCurrentCardsSuccess(res)))
+    .catch(err => dispatch(fetchCurrentCardsError(err)))
+}

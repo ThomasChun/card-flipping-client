@@ -16,11 +16,20 @@ import {
   SHOW_EDIT_CARD_MODAL,
   HIDE_EDIT_CARD_MODAL,
   SORT_CARDS_BY_PLAYERNAME,
+  SET_CURRENT_CARD_REQUEST,
+  SET_CURRENT_CARD_SUCCESS,
+  SET_CURRENT_CARD_ERROR,
+  FETCH_CURRENT_CARDS_REQUEST,
+  FETCH_CURRENT_CARDS_SUCCESS,
+  FETCH_CURRENT_CARDS_ERROR,
+  EDIT_CARD_REQUEST,
+  EDIT_CARD_SUCCESS,
+  EDIT_CARD_ERROR,
 } from '../actions/cards';
 
 const initialState = {
   userCards: [],
-  currentCard: null,
+  currentCard: [],
   showModal: false,
   showAddCardModal: false,
   showDeleteCardModal: false,
@@ -42,6 +51,22 @@ export default function reducer(state = initialState, action) {
       userCards: [...state.userCards, action.card],
     }
   } else if (action.type === CREATE_CARD_ERROR) {
+    return {
+      ...state,
+      loading: false, 
+      error: action.error,
+    }
+  } else if (action.type === EDIT_CARD_REQUEST) {
+    return {
+      ...state,
+      loading: true,
+    }
+  } else if (action.type === EDIT_CARD_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+    }
+  } else if (action.type === EDIT_CARD_ERROR) {
     return {
       ...state,
       loading: false, 
@@ -139,6 +164,40 @@ export default function reducer(state = initialState, action) {
         }
         return 0;
       }) // filter(card => card.playerName === 'C.J. McCollum'), 
+    }
+  } else if (action.type === SET_CURRENT_CARD_REQUEST) {
+    return {
+      ...state,
+      loading: true, 
+    }
+  } else if (action.type === SET_CURRENT_CARD_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      currentCard: [action.currentCard],
+    }
+  } else if (action.type === SET_CURRENT_CARD_ERROR) {
+    return {
+      ...state,
+      loading: false,
+      error: action.error,
+    }
+  } else if (action.type === FETCH_CURRENT_CARDS_REQUEST) {
+    return {
+      ...state,
+      loading: true,
+    }
+  } else if (action.type === FETCH_CURRENT_CARDS_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
+      currentCard: action.currentCards,
+    }
+  } else if (action.type === FETCH_CURRENT_CARDS_ERROR) {
+    return {
+      ...state,
+      loading: false,
+      error: action.error,
     }
   }
   return state;

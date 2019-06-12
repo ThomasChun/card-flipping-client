@@ -20,7 +20,7 @@ export class EditCardModal extends React.Component {
       return (
         <div className={showHideClassname}>
           <section className='modal-main card-attribute-icons'>
-            <CardEditInputForm show={true} handleClose={()=> this.hideModal()} user={this.props.username} card={this.props.currentCard}/>
+            <CardEditInputForm show={this.props.showEditCardModal} handleClose={()=> this.hideModal()} user={this.props.username} card={this.props.currentCard}/>
           </section>
         </div>
       );

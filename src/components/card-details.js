@@ -3,45 +3,42 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { Link } from 'react-router-dom';
 import EditCardModal from './edit-card-modal';
-import { hideEditCardModal, showEditCardModal, currentCardDetails, fetchCards } from '../actions/cards';
+import { hideEditCardModal, showEditCardModal, currentCardDetails, fetchCards, fetchCurrentCards } from '../actions/cards';
 
 export class CardDetails extends React.Component {
   componentDidMount() {
-    let card = this.props.cards.filter(card => card.id === this.props.match.params.id);
-    this.props.dispatch(fetchCards());
-    this.props.dispatch(currentCardDetails(card));
+    // this.props.dispatch(fetchCards());
+    this.props.dispatch(fetchCurrentCards());
+    // let card = this.props.cards.filter(card => card.id === this.props.match.params.id);
+    // this.props.dispatch(currentCardDetails(card));
   }
 
   handleCardEdit(cardId) {
-    this.props.dispatch(fetchCards());
-    let card = this.props.cards.filter(card => card.id === cardId);
-    this.props.dispatch(currentCardDetails(card));
+    // this.props.dispatch(fetchCards());
+    // let card = this.props.cards.filter(card => card.id === cardId);
+    // this.props.dispatch(currentCardDetails(card));
     this.props.dispatch(showEditCardModal());
   }
 
-  handleEditHideModal(cardId) {
-    // let card = this.props.cards.filter(card => card.id === cardId);
-    // this.props.dispatch(currentCardDetails(card));
+  handleEditHideModal() {
     this.props.dispatch(hideEditCardModal());
   }
 
   render() {
-    let { cards } = this.props;
-    if (!cards) {
-      return null;
-    }
-    const id = this.props.match.params.id;
-    console.log(cards);
-    let currentCard = cards.filter(card => card.id === id);
-    console.log(id);
+    let { currentCard } = this.props;
     let cardDetailDisplay;
-    if (cards !== null && cards.length !== 0) {
-      console.log('entered if block');
+    if (currentCard.length === 0) {
+      cardDetailDisplay = <div>loading...</div>;
+    }
+    
+    if (currentCard !== null && currentCard.length !== 0) {
+      // console.log('entered if block');
+      // console.log('current card', currentCard);
+      // console.log('type of cc', typeof currentCard);
       cardDetailDisplay = currentCard.map((currentCard, index) => {
-        console.log(currentCard);
         return (
-          <section className='display-card-details' key={index}>
-          <EditCardModal show={this.props.showEditCardModal} handleClose={() => this.handleEditHideModal(currentCard.id)} card={currentCard} />
+          <div className='display-card-details' key={index}>
+          
             <div><b>{currentCard.playerName} {currentCard.cardDetails}</b></div>
             <div><b>Sport: </b>{currentCard.sport}</div>
             <div><b>Year: </b>{currentCard.year}</div>
@@ -66,13 +63,14 @@ export class CardDetails extends React.Component {
               {currentCard.error ? <button className='err' disabled>ERR</button> : ''}
             </div>
             <button onClick={() => this.handleCardEdit(currentCard.id)}>Edit</button>
-            <Link to={{ pathname: `/dashboard` }}>BACK</Link>
-          </section>
+            <Link to='/dashboard'>BACK</Link>
+          </div>
         )
       })
     }
     return (
       <div className='display-card-details-container' >
+        <EditCardModal show={this.props.showEditCardModal} handleClose={() => this.handleEditHideModal()} card={this.props.currentCard} />
         {cardDetailDisplay}
       </div>
     );

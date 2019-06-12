@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import { fetchCards, currentCardDetails, hideModal, showModal, showDeleteCardModal, hideDeleteCardModal, showEditCardModal, hideEditCardModal } from '../actions/cards';
+import { fetchCards, currentCardDetails, hideModal, showModal, showDeleteCardModal, hideDeleteCardModal, showEditCardModal, hideEditCardModal, setCurrentCard } from '../actions/cards';
 import CardDetailModal from './card-detail-modal';
 import DeleteCardModal from './delete-card-modal';
 import EditCardModal from './edit-card-modal';
@@ -15,9 +15,10 @@ export class CardsDisplay extends React.Component {
   }
 
   handleCardDetails(cardId) {
+    console.log(cardId);
     let card = this.props.cards.filter(card => card.id === cardId);
-    this.props.dispatch(currentCardDetails(card));
-    // this.props.dispatch(showModal());
+    console.log(card);
+    this.props.dispatch(setCurrentCard(this.props.username, card[0]));
   }
 
   handleCardEdit(cardId) {
@@ -109,9 +110,10 @@ export class CardsDisplay extends React.Component {
           return (
             <div>
               {/* <button className='details-button' onClick={() => this.handleCardDetails(props.original.id)}>Details</button>
-              <button onClick={() => this.handleCardEdit(props.original.id)}>Edit</button>
-              <button onClick={() => this.handleCardDelete(props.original.id)}>Delete</button> */}
-              <Link onClick={() => this.handleCardDetails(props.original.id)} to={{ pathname: `/card-details/${props.original.id}`, state: { id: props.original.id}}}>Edit</Link>
+              <button onClick={() => this.handleCardEdit(props.original.id)}>Edit</button> */}
+              {/* <Link onClick={() => this.handleCardDetails(props.original.id)} to={{ pathname: `/card-details/${props.original.id}`, state: { idd: props.original.id}}}>Edit</Link> */}
+              <Link to='/card-details' onClick={() => this.handleCardDetails(props.original.id)}>VIEW</Link>
+              <button onClick={() => this.handleCardDelete(props.original.id)}>Delete</button>
             </div>
           )
         },
