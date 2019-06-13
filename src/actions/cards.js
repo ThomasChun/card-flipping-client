@@ -114,7 +114,7 @@ export const editCardError = (error) => ({
 export const editCard = (user, card) => (dispatch, getState) => {
   dispatch(editCardRequest());
   const { cardId, autograph, brand, cardDetails, error, graded, insert, listedOn, memorabilia, playerName, purchaseDate, purchasePrice, purchasedFrom, refractor, rookie, saleDate, salePrice, serialNumbered, shortPrint, sport, year } = card;
-  console.log(cardId);
+  // console.log(cardId);
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/cards`, {
     method: 'PUT',

@@ -3,20 +3,15 @@ import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
 import { Link } from 'react-router-dom';
 import EditCardModal from './edit-card-modal';
-import { hideEditCardModal, showEditCardModal, currentCardDetails, fetchCards, fetchCurrentCards } from '../actions/cards';
+import { hideEditCardModal, showEditCardModal, fetchCurrentCards } from '../actions/cards';
 
 export class CardDetails extends React.Component {
   componentDidMount() {
-    // this.props.dispatch(fetchCards());
     this.props.dispatch(fetchCurrentCards());
-    // let card = this.props.cards.filter(card => card.id === this.props.match.params.id);
-    // this.props.dispatch(currentCardDetails(card));
   }
 
   handleCardEdit(cardId) {
-    // this.props.dispatch(fetchCards());
-    // let card = this.props.cards.filter(card => card.id === cardId);
-    // this.props.dispatch(currentCardDetails(card));
+    this.props.dispatch(fetchCurrentCards());
     this.props.dispatch(showEditCardModal());
   }
 
@@ -32,9 +27,6 @@ export class CardDetails extends React.Component {
     }
     
     if (currentCard !== null && currentCard.length !== 0) {
-      // console.log('entered if block');
-      // console.log('current card', currentCard);
-      // console.log('type of cc', typeof currentCard);
       cardDetailDisplay = currentCard.map((currentCard, index) => {
         return (
           <div className='display-card-details' key={index}>
@@ -76,7 +68,6 @@ export class CardDetails extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = state => {
   const { currentUser } = state.auth;

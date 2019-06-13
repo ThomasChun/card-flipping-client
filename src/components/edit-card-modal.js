@@ -7,7 +7,6 @@ import { hideEditCardModal } from '../actions/cards';
 export class EditCardModal extends React.Component {
   hideModal() {
     this.props.dispatch(hideEditCardModal());
-    // this.props.dispatch(clearCurrentCardDetails());
   }
 
   render() {

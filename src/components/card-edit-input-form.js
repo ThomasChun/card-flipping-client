@@ -1,8 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import CardInput from './card-inputs';
-// import { required, nonEmpty, isTrimmed } from '../validators';
-import { editCard } from '../actions/cards';
+import { required, nonEmpty, isTrimmed } from '../validators';
+import { editCard, setCurrentCard } from '../actions/cards';
 import { connect } from 'react-redux'
 
 export class CardEditInputForm extends React.Component {
@@ -14,8 +14,9 @@ export class CardEditInputForm extends React.Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    values.id = values.cardId;
     this.props.dispatch(editCard(this.props.user, values))
+    .then(this.props.dispatch(setCurrentCard(this.props.user, values)))
     .then(this.props.reset)
     .then(this.props.handleClose)
   }
@@ -74,14 +75,14 @@ export class CardEditInputForm extends React.Component {
               type='text'
               name='playerName'
               label='Player:'
-              // validate={[required, nonEmpty, isTrimmed]}
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
               type='text'
               name='cardDetails'
               label='Card Details:'
-              // validate={[required, nonEmpty, isTrimmed]}
+              validate={[required, nonEmpty, isTrimmed]}
             />
             <Field
               component={CardInput}
@@ -97,7 +98,7 @@ export class CardEditInputForm extends React.Component {
                 type='text'
                 name='purchasePrice'
                 label='Purchase Price $:'
-                // validate={[required, nonEmpty, isTrimmed]}
+                validate={[required, nonEmpty, isTrimmed]}
               />
               <Field
                 component={CardInput}
@@ -242,21 +243,15 @@ export class CardEditInputForm extends React.Component {
   }
 }
 
-// Decorate with reduxForm(). It will read the initialValues prop provided by connect()
+
 CardEditInputForm = reduxForm({
-  form: 'CardEditInputForm'  // a unique identifier for this form
+  form: 'CardEditInputForm'
 })(CardEditInputForm)
 
-// You have to connect() to any reducers that you wish to connect to yourself
 CardEditInputForm = connect(
   state => ({
-    initialValues: state.cards.currentCard[0], // pull initial values from account reducer
+    initialValues: state.cards.currentCard[0],
   }),
-  // { load: loadAccount }               // bind account loading action creator
 )(CardEditInputForm)
 
 export default CardEditInputForm
-
-// export default reduxForm({
-//   form: 'CardEditInputForm',
-// })(CardEditInputForm);

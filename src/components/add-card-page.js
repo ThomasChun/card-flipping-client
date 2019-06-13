@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-// import CardInputForm from './card-input-form';
 import AddCardForm from './add-card-form';
 import { showAddCardModal, hideAddCardModal } from '../actions/cards';
 import { Link } from 'react-router-dom';
